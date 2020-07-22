@@ -1,0 +1,131 @@
+#1 - creando base de datos: post / 2-creando las columnas: id,usuario,fecha,contenido y descripcion
+    CREATE TABLE post(
+	    id SERIAL, 
+	    usuario VARCHAR(20),
+	    fecha_de_creacion DATE,
+	    contenido VARCHAR,
+	    descripcion VARCHAR,
+	    PRIMARY KEY (id)
+);
+#3 - Insertando 3 post (2 - PAMELA y 1-CARLOS)
+
+    INSERT INTO post (usuario, fecha_de_creacion, contenido, descripcion) 
+    VALUES('PAMELA', '07-01-2020', 'PRIMERA BASE DE DATOS', 'TABLA DE PRUEBA');
+
+    INSERT INTO post (usuario, fecha_de_creacion, contenido, descripcion) 
+    VALUES('PAMELA', '14-01-2020', 'SEGUNDO REGISTRO BASE DE DATOS', 'SEGUNDA COLUMNA');
+
+    INSERT INTO post (usuario, fecha_de_creacion, contenido, descripcion) 
+    VALUES('CARLOS', '24-07-2018', 'TERCER REGISTRO BASE DE DATOS', 'TERCERA COLUMNA');
+
+#4 - Modificar la tabla post, agregando la columna título
+
+    alter table post ADD titulo VARCHAR;
+
+#5 - Agregar título a las publicaciones ya ingresadas
+
+    update post set titulo = 'amarillo' where id = 1;
+
+    update post set titulo = 'azul' where id = 2;
+
+    update post set titulo = 'rojo' where id = 3;
+
+#6 - Insertar 2 post para el usuario "Pedro"
+
+    INSERT INTO post (usuario, fecha_de_creacion, contenido, descripcion, titulo) 
+    VALUES('PEDRO', '30-03-2019', 'CUARTO REGISTRO BASE DE DATOS', 'FILA DE PEDRO', 'verde');
+
+	INSERT INTO post (usuario, fecha_de_creacion, contenido, descripcion, titulo) 
+    VALUES('PEDRO', '31-12-2019', 'COVID-19', 'VACUNA', 'violeta');
+
+#7 - Eliminar el post de Carlos
+
+    delete from post where id = 3;
+
+#8 - Ingresar un nuevo post para el usuario "Carlos" 
+
+    INSERT INTO post (usuario, fecha_de_creacion, contenido, descripcion, titulo) 
+    VALUES('CARLOS', '02-05-1984', 'SARAMPION', 'TRATAMIENTO', 'gris');
+
+#PARTE 2
+
+#9 - Crear una nueva tabla, llamada comentarios, con los atributos id, fecha y hora de creación,
+contenido, que se relacione con la tabla posts. 
+
+
+    CREATE TABLE comentarios(
+	    id SERIAL, 
+	    fecha_de_creacion TIMESTAMP, 
+	    contenido VARCHAR, 
+	    id_post INT,
+	    FOREIGN KEY (id_post) REFERENCES post(id)
+	
+    )
+
+#10 - Crear 2 comentarios para el post de "Pamela" y 4 para "Carlos" 
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2008/12/31 13:00:00.59', 'PRIMERA BASE DE DATOS', 1);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2019/06/24 17:24:45.12', 'SEGUNDO COMENTARIO', 2);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2012/08/27 19:01:54.59', 'PRIMER COMENTARIO CARLOS', 6);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2019/06/24 17:24:45.12', 'SEGUNDO COMENTARIO CARLOS', 6);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2015/02/07 10:09:35.29', 'TERCER COMENTARIO CARLOS', 6);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2017/03/24 17:24:45.12', 'CUARTO COMENTARIO CARLOS', 6);
+
+#11. Crear un nuevo post para "Margarita" (1 punto)
+
+    INSERT INTO post (usuario, fecha_de_creacion, contenido, descripcion, titulo) 
+    VALUES('MARGARITA', '01-04-1990', 'VIRUELA', 'AMPOLLETA', 'TURQUESA');
+
+#12. Ingresar 5 comentarios para el post de Margarita. (1 punto)
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2012/06/24 17:24:45.12', 'PRIMER COMENTARIO MARGARITA', 7);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2011/08/27 19:01:54.59', 'SEGUNDO COMENTARIO MARGARITA', 7);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2019/06/24 17:24:45.12', 'TERCER COMENTARIO MARGARITA', 7);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2010/02/07 10:09:35.29', 'CUARTO COMENTARIO MARGARITA', 7);
+
+    INSERT INTO comentarios (fecha_de_creacion, contenido, id_post)
+    VALUES('2016/03/24 17:24:45.12', 'QUINTO COMENTARIO MARGARITA', 7);
+
+
+
+
+		
+
+
+		
+
+
+		
+
+
+		
+
+
+		
+
+
+		
+
+
+		
+
+
+
